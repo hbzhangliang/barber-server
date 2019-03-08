@@ -24,7 +24,7 @@
         <javaClientGenerator targetPackage="cn.com.cube.platform.barber.mysql.mapper" targetProject="src/main/java" type="XMLMAPPER" >
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
-        <table schema="barber" tableName="t_sys_account" domainObjectName="TSysAccount"
+        <table schema="barber" tableName="t_biz_user" domainObjectName="TBizUser"
                selectByExampleQueryId="true"
                enableInsert="true"
                enableUpdateByExample="true"

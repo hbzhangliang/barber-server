@@ -3,13 +3,12 @@ package cn.com.cube.platform.barber.controller;
 
 import cn.com.cube.platform.barber.mongo.models.User;
 import cn.com.cube.platform.barber.mongo.repo.UserRepo;
-import cn.com.cube.platform.barber.mysql.entity.TSysAccount;
-import cn.com.cube.platform.barber.mysql.service.TSysAccountService;
+import cn.com.cube.platform.barber.mysql.entity.TBizUser;
+import cn.com.cube.platform.barber.mysql.service.TBizUserService;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +29,7 @@ public class TestController {
     private UserRepo userRepo;
 
     @Autowired
-    private TSysAccountService tSysAccountService;
+    private TBizUserService userService;
 
     @RequestMapping(value = "/health")
     public Object health(){
@@ -63,12 +62,12 @@ public class TestController {
     @RequestMapping(value = "/mysql")
     public Object mysql(){
         log.info("mysql fire ");
-        TSysAccount account=new TSysAccount();
-        account.setName("dfff");
-        account.setPassword("vvv");
-        account.setId(UUID.randomUUID().toString().replaceAll("-",""));
-        tSysAccountService.insert(account);
-        return account;
+        TBizUser user=new TBizUser();
+        user.setName("dfff");
+        user.setPassword("vvv");
+        user.setId(UUID.randomUUID().toString().replaceAll("-",""));
+        userService.insert(user);
+        return user;
     }
 
 }
