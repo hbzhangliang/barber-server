@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @EnableAsync
 @EnableScheduling
-@ComponentScan({"cn.com.cube.platform" , "cn.com.flaginfo.platform"})
+@ComponentScan("cn.com.cube.platform")
 @SpringBootApplication
 @ImportResource(locations = { "classpath*:spring/*.xml"})
 public class BarberApplication {
@@ -24,7 +24,6 @@ public class BarberApplication {
         }
         catch (Exception e){
             e.printStackTrace();
-
         }
     }
 

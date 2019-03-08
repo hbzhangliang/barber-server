@@ -28,7 +28,6 @@ public abstract class BaseMongoDbModel implements Serializable{
 	@LastModifiedDate
 	protected Date dateUpdated;
 
-
 	private String status;
 
 	private Boolean flag;
