@@ -78,9 +78,9 @@
 
 
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="url" value="${db.url}" />
-        <property name="username" value="${db.user}" />
-        <property name="password" value="${db.password}" />
+        <property name="url" value="${mysql.url}" />
+        <property name="username" value="${mysql.user}" />
+        <property name="password" value="${mysql.password}" />
         <!-- 连接池最大数量 -->
         <property name="maxActive" value="${mysql.maxActive}" />
         <!-- 连接池最大空闲 -->
