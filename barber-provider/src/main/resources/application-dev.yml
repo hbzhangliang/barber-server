@@ -1,0 +1,27 @@
+
+server:
+  port: 8080
+
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/barber?serverTimezone=GMT&useUnicode=true&useSSL=false&characterEncoding=utf8
+    username: all
+    password: all1234
+
+  jedis:
+    pool:
+      max-active: 200
+      max-idle: 50
+      min-idle: 5
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 15
+  redis-two:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 2

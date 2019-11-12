@@ -1,0 +1,81 @@
+app:
+  name: poseidon
+
+server:
+  port: 8080
+
+
+dbcenter:
+  driver: com.mysql.jdbc.Driver
+  tjj:
+    url: jdbc:mysql://10.1.1.11:3306/shandjjdb?useUnicode=true&characterEncoding=UTF-8
+    username: esrusr
+    password: YhDEDzCQl7E4O5cN
+  edw:
+    url: jdbc:mysql://10.9.123.11:3306/edw?useUnicode=true&characterEncoding=UTF-8
+    username: query_user
+    password: mTv6e48ggTqyAgX7xcUW
+  searchdb:
+    url: jdbc:mysql://rm-2ze0bvh9797wl65i0.mysql.rds.aliyuncs.com:3306/search?useUnicode=true&characterEncoding=UTF-8
+    username: user_search
+    password: User_BI_ReadOnly_10
+    initialSize: 100
+    maxActive: 1000
+    minIdle: 20
+    maxWait: 20
+
+
+es:
+  name: taojiji-search-03
+  nodes: 10.16.27.114:9300,10.16.27.121:9300,10.16.27.123:9300
+  pools: 10
+  search:
+    index: tjj_search_bi
+    type: search
+    searchUrl: /tjj_search_bi/search/_search
+  recommend:
+    index: tjj_recommend_bi
+    type: recommend
+    searchUrl: /tjj_recommend_bi/recommend/_search
+  goodsSearch:
+    index: tjj_goods_search
+    type: goods_search
+    searchUrl: /tjj_goods_search/goods_search/_search
+
+
+spring:
+  jedis:
+    pool:
+      max-active: 200
+      max-idle: 50
+      min-idle: 5
+  redis:
+    host: r-2ze8w4agwfqdch8vwj.redis.rds.aliyuncs.com
+    port: 6379
+    password: 2^1ywqVOU3
+    database: 15
+  redis-two:
+    host: r-2ze1hpffihzaemou6p.redis.rds.aliyuncs.com
+    port: 6379
+    password: wfwefwef_213ASFE
+    database: 0
+
+sso:
+  path:
+    url: /api/account/login
+    exclude: /api/test/**,/actuator/health,/api/setting/info*
+
+
+good:
+  search: http://pandora.tjj.prod/opt/tjj/list/search/v3
+
+
+rmi:
+  searchTransfer: http://backstage-index.tjj.prod
+  backstageIndex: http://backstage-index.tjj.prod
+  backstageSearch: http://backstage-search.tjj.prod
+  channelIndex: http://channel-index.tjj.prod
+
+zookeeper:
+  local:
+    conn: 10.16.100.100,10.16.100.94,10.16.100.95

@@ -1,5 +1,6 @@
 package cn.com.cube.platform.barber;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,17 +15,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @ComponentScan("cn.com.cube.platform")
 @SpringBootApplication
-@ImportResource(locations = { "classpath*:spring/*.xml"})
+@MapperScan("cn.com.cube.platform.barber.mysql.mapper")
 public class BarberApplication {
 
     public static void main(String[] args){
-        try {
-            SpringApplication springApplication = new SpringApplication(BarberApplication.class);
-            springApplication.run(args);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+        SpringApplication springApplication = new SpringApplication(BarberApplication.class);
+        springApplication.run(args);
     }
 
 }
