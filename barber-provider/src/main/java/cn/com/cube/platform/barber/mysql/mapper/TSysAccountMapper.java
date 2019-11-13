@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface TSysAccountMapper extends BaseMapper<TSysAccount> {
 
+    Long testCount();
+
 }

@@ -1,5 +1,6 @@
 package cn.com.cube.platform.barber.utils.exception;
 
+import cn.com.cube.platform.barber.utils.resp.PoseBaseResponse;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +26,7 @@ public class GlobalExceptionHandler {
 	// 添加全局异常处理流程，根据需要设置需要处理的异常
 	@ExceptionHandler(value = IllegalArgumentException.class)
 	public Object MethodArgumentNotValidHandler(HttpServletRequest request, IllegalArgumentException exception) {
-//		return BarberBaseResponse.error(exception.getMessage());
-		return null;
+		return PoseBaseResponse.error(exception.getMessage());
 	}
 
 	@ExceptionHandler(value = Exception.class)
@@ -34,14 +34,11 @@ public class GlobalExceptionHandler {
 		// 打印异常信息：
 		for( Throwable throwable : ExceptionUtils.getThrowableList(e) ){
 			logger.debug("Error : [{}]", throwable.getClass().getName());
-			if( throwable instanceof BarberException){
-//				return BarberBaseResponse.error(throwable.getMessage());
-				return null;
+			if( throwable instanceof PostException){
+				return PoseBaseResponse.error(throwable.getMessage());
 			}
 		}
 		logger.error("GlobalDefaultExceptionHandler.defaultErrorHandler", e);
-//		return BarberBaseResponse.error("未知异常");
-
-		return null;
+		return PoseBaseResponse.error("未知异常");
 	}
 }

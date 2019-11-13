@@ -3,14 +3,17 @@ package cn.com.cube.platform.barber.mysql.controller;
 
 import cn.com.cube.platform.barber.mysql.entity.TSysAccount;
 import cn.com.cube.platform.barber.mysql.service.ITSysAccountService;
+import cn.com.cube.platform.barber.mysql.vo.PageParams;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import org.h2.pagestore.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,12 +38,8 @@ public class TSysAccountController {
     }
 
     @RequestMapping(value = "/list_page")
-    public Object listPage(){
-
-//        IPage<TSysAccount> page=
-//        sysAccountService.page()
-//        return sysAccountService.list();
-        return null;
+    public Object listPage(@RequestBody PageParams<TSysAccount> pageParams){
+        return  sysAccountService.listPage(pageParams);
     }
 
     @RequestMapping(value = "/save")
@@ -60,5 +59,25 @@ public class TSysAccountController {
         return sysAccountService.removeById(id);
     }
 
+
+    @RequestMapping(value = "/login")
+    public Object login(@RequestBody Map<String, String> map){
+        String account=map.get("username");
+        String pwd=map.get("password");
+        QueryWrapper<TSysAccount> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(TSysAccount::getAccount,account).eq(TSysAccount::getPassword,pwd);
+
+        List<TSysAccount> list=sysAccountService.list(queryWrapper);
+        Map<String,String> map1=new HashMap<>();
+        map1.put("token","admin-token");
+        return map1;
+    }
+
+
+
+    @RequestMapping(value = "/test")
+    public Object test(){
+        return sysAccountService.testCount();
+    }
 
 }
