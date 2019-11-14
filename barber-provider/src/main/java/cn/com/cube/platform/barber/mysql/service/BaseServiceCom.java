@@ -46,6 +46,9 @@ public class BaseServiceCom {
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 ComEnum.SearchOp op=ComEnum.SearchOp.getOp(entry.getKey().substring(0,3));
                 String key=entry.getKey().substring(3);
+                if(entry.getValue()==null){
+                    continue;
+                }
                 switch (op){
                     case eq_:{
                         queryWrapper.eq(key,entry.getValue());

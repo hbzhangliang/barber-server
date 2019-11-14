@@ -28,4 +28,18 @@ public class PoseBaseResponse<T> extends BaseResponse<T> {
         baseResponse.setData(data);
         return baseResponse;
     }
+
+    //token非法
+    public static  <W> BaseResponse<W> errorIllegalToken() {
+        return BaseResponse.error(-50008L, "Illegal token");
+    }
+
+    public static  <W> BaseResponse<W> errorOtherLoginIn() {
+        return BaseResponse.error(-50012L, "Other clients logged in");
+    }
+
+    public static  <W> BaseResponse<W> errorTokenExpired() {
+        return BaseResponse.error(-50014L, "Token expired");
+    }
+
 }
