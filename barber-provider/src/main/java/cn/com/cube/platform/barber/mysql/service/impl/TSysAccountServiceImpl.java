@@ -35,7 +35,7 @@ public class TSysAccountServiceImpl extends ServiceImpl<TSysAccountMapper, TSysA
         IPage<TSysAccount> iPage = this.page(page,queryWrapper);
 
         pageParams.setData(iPage.getRecords());
-        int totalRows=this.count(queryWrapper);
+        int totalRows=(int)iPage.getTotal();
         int totalPage=(totalRows-1)/pageParams.getPageSize()+1;
         pageParams.setTotalRows(totalRows);
         pageParams.setTotalPage(totalPage);
