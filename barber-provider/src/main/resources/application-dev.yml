@@ -25,3 +25,8 @@ spring:
     port: 6379
     password:
     database: 2
+
+sso:
+  path:
+    url: /account/login
+    exclude: /user/**,/depart/**

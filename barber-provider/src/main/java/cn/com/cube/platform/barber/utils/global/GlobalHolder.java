@@ -1,5 +1,7 @@
 package cn.com.cube.platform.barber.utils.global;
 
+import cn.com.cube.platform.barber.mysql.vo.AccountVo;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -10,28 +12,17 @@ import java.util.Set;
 
 public class GlobalHolder {
 
-    private static Set<String> tokenSet=new HashSet<>(500);
+    private static final ThreadLocal<AccountVo> requestHolder = new ThreadLocal<>();
 
-    private static final ThreadLocal<Map<String,Object>> requestHolder = new ThreadLocal<>();
-
-    public static Map<String,Object> get(){
+    public static AccountVo get(){
         return requestHolder.get();
     }
 
-    public static void set(Map<String,Object> map){
-        requestHolder.set(map);
+    public static void set(AccountVo bean){
+        requestHolder.set(bean);
     }
 
     public static void remove(){
         requestHolder.remove();
-    }
-
-
-    public static Set<String> getTokenSet() {
-        return tokenSet;
-    }
-
-    public static void setTokenSet(Set<String> tokenSet) {
-        GlobalHolder.tokenSet = tokenSet;
     }
 }
