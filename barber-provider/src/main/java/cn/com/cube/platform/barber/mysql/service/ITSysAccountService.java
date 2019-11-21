@@ -5,6 +5,7 @@ import cn.com.cube.platform.barber.mysql.vo.AccountVo;
 import cn.com.cube.platform.barber.mysql.vo.PageParams;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Map;
 
 /**
@@ -28,7 +29,7 @@ public interface ITSysAccountService extends IService<TSysAccount> {
      * @param pwd
      * @return
      */
-    Map<String,Object> checkAccount(String account, String pwd);
+    Map<String,Object> checkAccount(@NotEmpty String account,@NotEmpty String pwd);
 
 
     /**
@@ -45,6 +46,9 @@ public interface ITSysAccountService extends IService<TSysAccount> {
      * @param token
      * @return
      */
-    AccountVo getInfoByToken(String token);
+    AccountVo getInfoByToken(@NotEmpty String token);
+
+
+    void logout(String token);
 
 }

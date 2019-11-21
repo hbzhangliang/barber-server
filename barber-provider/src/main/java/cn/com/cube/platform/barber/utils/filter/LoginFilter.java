@@ -35,7 +35,7 @@ public class LoginFilter implements Filter {
 
     private String[] excludePaths;
 
-    private static String TOKEN="token";
+    private static String TOKEN="Admin-Token";
 
     private AntPathMatcher antPathMatcher=new AntPathMatcher();
 

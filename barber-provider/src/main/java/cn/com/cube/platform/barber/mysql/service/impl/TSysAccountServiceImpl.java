@@ -93,7 +93,7 @@ public class TSysAccountServiceImpl extends ServiceImpl<TSysAccountMapper, TSysA
         result.setAccount(tSysAccount);
         //查找depart
         QueryWrapper<TBizAccountDepart> accountDepartQueryWrapper=new QueryWrapper<>();
-        accountDepartQueryWrapper.lambda().eq(TBizAccountDepart::getAccountId,account);
+        accountDepartQueryWrapper.lambda().eq(TBizAccountDepart::getAccountId,tSysAccount.getId());
         List<TBizAccountDepart> accountDepartList=accountDepartService.list(accountDepartQueryWrapper);
         if(CollectionUtils.isEmpty(accountDepartList)){
             log.error("未找到门店信息,account [{}],pwd [{}]",account,pwd);
@@ -170,5 +170,11 @@ public class TSysAccountServiceImpl extends ServiceImpl<TSysAccountMapper, TSysA
     @Override
     public AccountVo getInfoByToken(String token) {
         return (AccountVo) redisUtils.getObj(token);
+    }
+
+
+    @Override
+    public void logout(String token) {
+        redisUtils.delKeys(token);
     }
 }
