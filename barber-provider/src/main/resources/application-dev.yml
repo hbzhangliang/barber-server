@@ -29,4 +29,4 @@ spring:
 sso:
   path:
     url: /account/login
-    exclude: /account/enter-corp,/account/info,/user/**,/depart/**
+    exclude: /account/enter-corp,/account/info,/user/**,/depart/**,/websocket/**
