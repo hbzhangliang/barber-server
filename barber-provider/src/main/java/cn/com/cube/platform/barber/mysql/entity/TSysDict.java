@@ -1,5 +1,6 @@
 package cn.com.cube.platform.barber.mysql.entity;
 
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -10,16 +11,18 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author jh
- * @since 2019-11-20
+ * @since 2019-11-27
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class TBizAccountDepart extends entity1 {
+public class TSysDict extends entity {
 
-    private Integer accountId;
+    private String code;
 
-    private Integer departId;
+    private String name;
 
+    private Integer parentId;
 
+    private String remark;
 }

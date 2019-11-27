@@ -115,7 +115,7 @@ public class TSysAccountServiceImpl extends ServiceImpl<TSysAccountMapper, TSysA
 
             //写入redis,返回 token
             String token= UUID.randomUUID().toString().replaceAll("-","");
-            GlobalHolder.set(result);
+//            GlobalHolder.set(result);
             Map<String,Object> map=new HashMap<>(2);
             map.put("status","1");
             map.put("token",token);
@@ -156,7 +156,7 @@ public class TSysAccountServiceImpl extends ServiceImpl<TSysAccountMapper, TSysA
 
         //写入redis,返回 token
         String token= UUID.randomUUID().toString().replaceAll("-","");
-        GlobalHolder.set(result);
+//        GlobalHolder.set(result);
         Map<String,Object> map=new HashMap<>(2);
         map.put("status","1");
         map.put("token",token);
@@ -175,6 +175,7 @@ public class TSysAccountServiceImpl extends ServiceImpl<TSysAccountMapper, TSysA
 
     @Override
     public void logout(String token) {
+        GlobalHolder.remove();
         redisUtils.delKeys(token);
     }
 }

@@ -82,17 +82,6 @@ public class TBizCustomer extends entity {
 
     private String mouse;
 
-    private String status;
-
-    private Integer flag;
-
-    private LocalDateTime createTime;
-
-    private LocalDateTime updateTime;
-
-    private String createBy;
-
-    private String updateBy;
 
 
 }

@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/depart")
-public class TSysDepartController {
+public class TSysDepartController extends BaseController{
 
     @Autowired
     private ITSysDepartService itSysDepartService;
@@ -48,6 +48,7 @@ public class TSysDepartController {
 
     @RequestMapping(value = "/save")
     public Object save(@RequestBody TSysDepart bean){
+        boundData(bean);
         return itSysDepartService.saveOrUpdate(bean);
     }
 

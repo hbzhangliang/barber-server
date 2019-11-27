@@ -29,17 +29,6 @@ public class TSysAccount extends entity {
 
     private String remark;
 
-    private String status;
-
-    private Integer flag;
-
-    private LocalDateTime createTime;
-
-    private LocalDateTime updateTime;
-
-    private String createBy;
-
-    private String updateBy;
 
 
 }

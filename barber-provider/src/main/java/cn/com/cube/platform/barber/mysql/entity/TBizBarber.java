@@ -46,17 +46,6 @@ public class TBizBarber extends entity {
 
     private String skill;
 
-    private String status;
-
-    private Integer flag;
-
-    private LocalDateTime createTime;
-
-    private LocalDateTime updateTime;
-
-    private String createBy;
-
-    private String updateBy;
 
 
 }
