@@ -5,6 +5,7 @@ import cn.com.cube.platform.barber.mysql.entity.entity;
 import cn.com.cube.platform.barber.mysql.vo.PageParams;
 import cn.com.cube.platform.barber.utils.ComEnum;
 import cn.com.cube.platform.barber.utils.Tuple2;
+import cn.com.cube.platform.barber.utils.UtilHelper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import java.util.HashMap;
@@ -33,12 +34,14 @@ public class BaseServiceCom {
         Map<String,Object> map = pageParams.getFilter();
 
         QueryWrapper<T> queryWrapper =  new QueryWrapper<>();
+
+        String sqlOrder=UtilHelper.camelToUnderline(pageParams.getOrderBy());
         //排序
         if(pageParams.getDirection().equals("desc")){
-            queryWrapper.orderByDesc(pageParams.getOrderBy());
+            queryWrapper.orderByDesc(sqlOrder);
         }
         else {
-            queryWrapper.orderByAsc(pageParams.getOrderBy());
+            queryWrapper.orderByAsc(sqlOrder);
         }
         //对map进行便利，各种条件查询
         if(map!=null&&!map.isEmpty()) {
@@ -46,6 +49,7 @@ public class BaseServiceCom {
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 ComEnum.SearchOp op=ComEnum.SearchOp.getOp(entry.getKey().substring(0,3));
                 String key=entry.getKey().substring(3);
+                key=UtilHelper.camelToUnderline(key);
                 if(entry.getValue()==null){
                     continue;
                 }
@@ -100,7 +104,7 @@ public class BaseServiceCom {
                 for (Map.Entry<String, Tuple2<Object,Object>> entry : betweenMap.entrySet()) {
                     Tuple2<Object,Object> tmpT=entry.getValue();
                     if(tmpT._1().orElse(null)!=null&&tmpT._2().orElse(null)!=null){
-                        queryWrapper.between(entry.getKey(),tmpT._1(),tmpT._2());
+                        queryWrapper.between(entry.getKey(),tmpT._1().get(),tmpT._2().get());
                     }
                     else if(tmpT._1().orElse(null)==null&&tmpT._2().orElse(null)!=null){
                         queryWrapper.le(entry.getKey(),tmpT._2().get());
