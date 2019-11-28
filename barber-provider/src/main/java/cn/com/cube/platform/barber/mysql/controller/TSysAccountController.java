@@ -5,8 +5,6 @@ import cn.com.cube.platform.barber.mysql.entity.TSysAccount;
 import cn.com.cube.platform.barber.mysql.service.ITSysAccountService;
 import cn.com.cube.platform.barber.mysql.vo.PageParams;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +24,8 @@ import java.util.Map;
  * @since 2019-11-12
  */
 @RestController
-@RequestMapping("/mysql/t-sys-account")
-public class TSysAccountController {
+@RequestMapping("/sys-account")
+public class TSysAccountController extends BaseController {
 
     @Autowired
     private ITSysAccountService sysAccountService;
@@ -37,13 +35,14 @@ public class TSysAccountController {
         return sysAccountService.list();
     }
 
-    @RequestMapping(value = "/list_page")
+    @RequestMapping(value = "/list")
     public Object listPage(@RequestBody PageParams<TSysAccount> pageParams){
         return  sysAccountService.listPage(pageParams);
     }
 
     @RequestMapping(value = "/save")
     public Object save(@RequestBody TSysAccount bean){
+        boundData(bean);
         return sysAccountService.saveOrUpdate(bean);
     }
 
