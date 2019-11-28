@@ -1,10 +1,10 @@
 package cn.com.cube.platform.barber.mysql.service.impl;
 
-import cn.com.cube.platform.barber.mysql.entity.TBizBarber;
-import cn.com.cube.platform.barber.mysql.entity.TSysDict;
-import cn.com.cube.platform.barber.mysql.mapper.TBizBarberMapper;
+import cn.com.cube.platform.barber.mysql.entity.TBizCustomer;
+import cn.com.cube.platform.barber.mysql.entity.VBizCustomer;
+import cn.com.cube.platform.barber.mysql.mapper.VBizCustomerMapper;
 import cn.com.cube.platform.barber.mysql.service.BaseServiceCom;
-import cn.com.cube.platform.barber.mysql.service.ITBizBarberService;
+import cn.com.cube.platform.barber.mysql.service.IVBizCustomerService;
 import cn.com.cube.platform.barber.mysql.vo.PageParams;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -14,21 +14,20 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * VIEW 服务实现类
  * </p>
  *
  * @author jh
- * @since 2019-11-20
+ * @since 2019-11-28
  */
 @Service
-public class TBizBarberServiceImpl extends ServiceImpl<TBizBarberMapper, TBizBarber> implements ITBizBarberService {
-
+public class VBizCustomerServiceImpl extends ServiceImpl<VBizCustomerMapper, VBizCustomer> implements IVBizCustomerService {
 
     @Override
-    public PageParams<TBizBarber> listPage(PageParams<TBizBarber> pageParams) {
-        QueryWrapper<TBizBarber> queryWrapper= BaseServiceCom.wrapper(pageParams);
-        Page<TBizBarber> page = new Page<>(pageParams.getPage(),pageParams.getPageSize());
-        IPage<TBizBarber> iPage = this.page(page,queryWrapper);
+    public PageParams<VBizCustomer> listPage(PageParams<VBizCustomer> pageParams) {
+        QueryWrapper<VBizCustomer> queryWrapper= BaseServiceCom.wrapper(pageParams);
+        Page<VBizCustomer> page = new Page<>(pageParams.getPage(),pageParams.getPageSize());
+        IPage<VBizCustomer> iPage = this.page(page,queryWrapper);
 
         pageParams.setData(iPage.getRecords());
         int totalRows=(int)iPage.getTotal();

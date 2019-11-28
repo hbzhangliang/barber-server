@@ -1,6 +1,7 @@
 package cn.com.cube.platform.barber.mysql.service;
 
 import cn.com.cube.platform.barber.mysql.entity.TBizBarber;
+import cn.com.cube.platform.barber.mysql.vo.PageParams;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -12,5 +13,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-11-20
  */
 public interface ITBizBarberService extends IService<TBizBarber> {
+
+    //分页查询
+    PageParams<TBizBarber> listPage(PageParams<TBizBarber> pageParams);
 
 }

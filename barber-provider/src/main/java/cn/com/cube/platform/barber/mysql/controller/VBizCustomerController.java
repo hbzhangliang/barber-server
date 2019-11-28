@@ -1,7 +1,10 @@
 package cn.com.cube.platform.barber.mysql.controller;
 
+
 import cn.com.cube.platform.barber.mysql.entity.TBizCustomer;
+import cn.com.cube.platform.barber.mysql.entity.VBizCustomer;
 import cn.com.cube.platform.barber.mysql.service.ITBizCustomerService;
+import cn.com.cube.platform.barber.mysql.service.IVBizCustomerService;
 import cn.com.cube.platform.barber.mysql.vo.PageParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,18 +17,18 @@ import java.util.Map;
 
 /**
  * <p>
- *  前端控制器
+ * VIEW 前端控制器
  * </p>
  *
  * @author jh
- * @since 2019-11-20
+ * @since 2019-11-28
  */
 @RestController
-@RequestMapping("/customer")
-public class TBizCustomerController extends BaseController{
+@RequestMapping("/v-customer")
+public class VBizCustomerController extends BaseController{
 
     @Autowired
-    private ITBizCustomerService customerService;
+    private IVBizCustomerService customerService;
 
     @RequestMapping(value = "/list-all")
     public Object list(){
@@ -34,7 +37,7 @@ public class TBizCustomerController extends BaseController{
 
 
     @RequestMapping(value = "/list")
-    public Object list(@RequestBody PageParams<TBizCustomer> bean){
+    public Object list(@RequestBody PageParams<VBizCustomer> bean){
         return customerService.listPage(bean);
     }
 
@@ -45,7 +48,7 @@ public class TBizCustomerController extends BaseController{
     }
 
     @RequestMapping(value = "/save")
-    public Object save(@RequestBody TBizCustomer bean){
+    public Object save(@RequestBody VBizCustomer bean){
         boundData(bean);
         return customerService.saveOrUpdate(bean);
     }
@@ -55,6 +58,5 @@ public class TBizCustomerController extends BaseController{
         List<Integer> ids=map.get("ids");
         return customerService.removeByIds(ids);
     }
-
 
 }
