@@ -25,4 +25,6 @@ public class TSysDict extends entity {
     private Integer parentId;
 
     private String remark;
+
+    private Integer seq;
 }
