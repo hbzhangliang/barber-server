@@ -401,6 +401,7 @@ CREATE TABLE `t_sys_dict` (
   `code` varchar(30) DEFAULT NULL,
   `name` varchar(30) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
+  `seq` int(11) DEFAULT NULL,
   `remark` varchar(300) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL,
   `flag` int(11) DEFAULT NULL,
